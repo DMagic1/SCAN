@@ -442,7 +442,10 @@ namespace SCANsat
 				int f1 = f + (int)Math.Round(fov - f);
 				for(int x=-f; x<=f1; ++x) {
 					for(int y=-f; y<=f1; ++y) {
-						data.registerPass(lon + x, lat + y, sensor.sensor);
+                        double laty = lat + y;
+                        if (laty > 90) laty = 90;
+                        if (laty < -90) laty = -90;
+						data.registerPass(lon + x, laty, sensor.sensor);
 					}
 				}
 			}
